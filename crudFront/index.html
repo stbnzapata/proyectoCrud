@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
+
+    <title>CRUD</title>
+    
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="container-empresa mt-4 shadow-lg p-3 mb-5 bg-body rounded">
+
+            <button id="btnCrearEmpresa" type="button" class="btn btn-primary" data-bs-toggle="modal">Crear Empresa</button>
+
+            <table id="tableEmpresa" class="table mt-2 table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr class="text-center">
+                        <th scope="col">ID Empresa</th>
+                        <th scope="col">Nombre Empresa</th>
+                        <th scope="col">Direccion</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tbEmpresa">
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container-maquina mt-4 shadow-lg p-3 mb-5 bg-body rounded">
+
+            <button id="btnCrearMaquina" type="button" class="btn btn-primary" data-bs-toggle="modal">Crear Maquina</button>
+
+            <table id="tableMaquina" class="table mt-2 table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr class="text-center">
+                        <th scope="col">ID Maquina</th>
+                        <th scope="col">ID Empresa</th>
+                        <th scope="col">Nombre Maquina</th>
+                        <th scope="col">Ubicacion</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tbMaquina">
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container-funcionario mt-4 shadow-lg p-3 mb-5 bg-body rounded">
+
+            <button id="btnCrearFuncionario" type="button" class="btn btn-primary" data-bs-toggle="modal">Crear Funcionario</button>
+
+            <table id="tableMaquina" class="table mt-2 table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr class="text-center">
+                        <th scope="col">ID Funcionario</th>
+                        <th scope="col">ID Maquina</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Cargo</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tbFuncionario">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalEmpresa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h4 class="modal-title" id="exampleModalLabel">Empresa</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formEmpresa">
+                        <div class="mb-3">
+                            <label for="id-empresa" class="col-form-label">Id Empresa:</label>
+                            <input type="number" class="form-control" id="id-empresa" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label for="text-name" class="col-form-label">Nombre Empresa:</label>
+                            <input type="text" class="form-control" id="text-name"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="text-direction" class="col-form-label">Direccion:</label>
+                            <input type="text" class="form-control" id="text-direction"></input>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+    <div class="modal fade" id="modalMaquina" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h4 class="modal-title" id="exampleModalLabel">Maquina</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formMaquina">
+                        <div class="mb-3">
+                            <label for="id-maquina" class="col-form-label">Id Maquina:</label>
+                            <input type="number" class="form-control" id="id-maquina" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id-empresa-maquina" class="col-form-label">Id Empresa:</label>
+                            <input type="number" class="form-control" id="id-empresa-maquina">
+                        </div>
+                        <div class="mb-3">
+                            <label for="text-maquina" class="col-form-label">Nombre Maquina:</label>
+                            <input type="text" class="form-control" id="text-maquina"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="text-ubicacion" class="col-form-label">Ubicación:</label>
+                            <input type="text" class="form-control" id="text-ubicacion"></input>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalFuncionario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h4 class="modal-title" id="exampleModalLabel">Funcionario</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formFuncionario">
+                        <div class="mb-3">
+                            <label for="id-funcionario" class="col-form-label">Id Funcionario:</label>
+                            <input type="number" class="form-control" id="id-funcionario" >
+                        </div>
+                        <div class="mb-3">
+                            <label for="id-maquina-funcionario" class="col-form-label">Id Maquina:</label>
+                            <input type="number" class="form-control" id="id-maquina-funcionario">
+                        </div>                        
+                        <div class="mb-3">
+                            <label for="text-nombre-funcionario" class="col-form-label">Nombre:</label>
+                            <input type="text" class="form-control" id="text-nombre-funcionario"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="text-apellido-funcionario" class="col-form-label">Apellido:</label>
+                            <input type="text" class="form-control" id="text-apellido-funcionario"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="text-cargo" class="col-form-label">Cargo:</label>
+                            <input type="text" class="form-control" id="text-cargo"></input>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+    <script src="index.js"></script>
+
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script type="text/javascript" src="dalert.jquery.js"></script>
+</body>
+
+</html>
